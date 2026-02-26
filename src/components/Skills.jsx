@@ -51,38 +51,32 @@ const skillGroups = [
   },
 ]
 
-const tools = [
-  { name: 'Figma', level: 95 },
-  { name: 'Adobe XD', level: 85 },
-  { name: 'Sketch', level: 80 },
-  { name: 'Protopie', level: 75 },
-  { name: 'Webflow', level: 70 },
-  { name: 'HTML/CSS', level: 65 },
-]
-
 const marqueeItems = [
   'UI Design', 'Figma', 'User Research', 'Prototyping',
   'Design Systems', 'Usability Testing', 'Interaction Design',
   'Adobe XD', 'A/B Testing', 'Visual Design', 'Wireframing', 'Webflow',
 ]
 
+const process = ['Discover', 'Define', 'Design', 'Test', 'Deliver']
+
 export default function Skills() {
   return (
-    <section id="skills" className="py-28 overflow-hidden">
-      {/* Scrolling marquee */}
-      <div className="border-y-[3px] border-charcoal bg-charcoal py-4 mb-28 overflow-hidden">
+    <section id="skills" className="py-20 md:py-32 overflow-hidden">
+
+      {/* Marquee */}
+      <div className="border-y border-charcoal/12 bg-charcoal py-3 md:py-4 mb-20 md:mb-32 overflow-hidden">
         <div className="flex whitespace-nowrap">
-          <div className="flex gap-8 animate-marquee shrink-0 pr-8">
+          <div className="flex gap-6 md:gap-8 animate-marquee shrink-0 pr-6 md:pr-8">
             {[...marqueeItems, ...marqueeItems].map((item, i) => (
-              <span key={i} className="font-display text-3xl text-cream flex items-center gap-8">
+              <span key={i} className="font-display text-2xl md:text-3xl text-cream flex items-center gap-6 md:gap-8">
                 {item}
                 <span className="text-accent">·</span>
               </span>
             ))}
           </div>
-          <div className="flex gap-8 animate-marquee shrink-0 pr-8" aria-hidden="true">
+          <div className="flex gap-6 md:gap-8 animate-marquee shrink-0 pr-6 md:pr-8" aria-hidden="true">
             {[...marqueeItems, ...marqueeItems].map((item, i) => (
-              <span key={i} className="font-display text-3xl text-cream flex items-center gap-8">
+              <span key={i} className="font-display text-2xl md:text-3xl text-cream flex items-center gap-6 md:gap-8">
                 {item}
                 <span className="text-accent">·</span>
               </span>
@@ -91,84 +85,75 @@ export default function Skills() {
         </div>
       </div>
 
-      <div className="max-w-[1200px] mx-auto px-6">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
+
         {/* Section label */}
-        <div className="flex items-center gap-3 mb-6">
-          <span className="inline-block w-10 h-[3px] bg-charcoal" />
-          <span className="font-sans text-sm font-semibold tracking-[0.15em] uppercase text-charcoal/50">
-            Skills & Tools
-          </span>
+        <div className="flex items-center gap-3 mb-12">
+          <span className="font-sans text-[10px] tracking-[0.2em] uppercase text-charcoal/30" style={{ fontWeight: 600 }}>03</span>
+          <span className="w-8 h-px bg-charcoal/20" />
+          <span className="font-sans text-[10px] tracking-[0.2em] uppercase text-charcoal/40" style={{ fontWeight: 600 }}>Skills & Tools</span>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          {/* Left: skill groups */}
-          <div>
-            <h2 className="font-display text-[clamp(3rem,6vw,5rem)] leading-[0.95] text-charcoal mb-10">
-              What I bring to the table
-            </h2>
+        {/* Heading */}
+        <div className="border-t border-charcoal/15 pt-10 mb-14">
+          <h2 className="font-display text-[clamp(2.5rem,6vw,6rem)] leading-[0.9] text-charcoal">
+            What I bring to the table
+          </h2>
+        </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-              {skillGroups.map((group) => (
-                <div key={group.category}>
-                  <h3 className="font-sans font-black text-sm uppercase tracking-widest text-accent mb-4" style={{ fontWeight: 900 }}>
-                    {group.category}
-                  </h3>
-                  <ul className="space-y-2">
-                    {group.skills.map((skill) => (
-                      <li
-                        key={skill}
-                        className="flex items-center gap-2 font-body text-[15px] text-charcoal/80"
-                      >
-                        <span className="w-1.5 h-1.5 bg-charcoal rounded-full shrink-0" />
-                        {skill}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right: proficiency bars */}
-          <div>
-            <div className="border-[3px] border-charcoal p-8">
-              <h3 className="font-sans font-black text-base uppercase tracking-widest text-charcoal mb-8" style={{ fontWeight: 900 }}>
-                Tool Proficiency
+        {/* Skills grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10 md:gap-10 mb-20">
+          {skillGroups.map((group) => (
+            <div key={group.category}>
+              <h3
+                className="font-sans text-[10px] uppercase tracking-[0.2em] text-accent mb-5"
+                style={{ fontWeight: 700 }}
+              >
+                {group.category}
               </h3>
-              <div className="space-y-7">
-                {tools.map((tool) => (
-                  <div key={tool.name}>
-                    <div className="flex justify-between items-baseline mb-2">
-                      <span className="font-sans font-bold text-charcoal" style={{ fontWeight: 700 }}>{tool.name}</span>
-                      <span className="font-body text-sm text-charcoal/50">{tool.level}%</span>
-                    </div>
-                    <div className="h-[6px] bg-charcoal/10 w-full">
-                      <div
-                        className="h-full bg-charcoal transition-all duration-1000"
-                        style={{ width: `${tool.level}%` }}
-                      />
-                    </div>
-                  </div>
+              <ul className="space-y-2.5">
+                {group.skills.map((skill) => (
+                  <li
+                    key={skill}
+                    className="font-body text-[13px] md:text-sm text-charcoal/65 flex items-start gap-2"
+                  >
+                    <span className="w-1 h-1 bg-charcoal/20 rounded-full mt-[6px] shrink-0" />
+                    {skill}
+                  </li>
                 ))}
-              </div>
-
-              {/* Process steps */}
-              <div className="mt-10 pt-8 border-t-[3px] border-charcoal">
-                <h3 className="font-sans font-black text-base uppercase tracking-widest text-charcoal mb-6" style={{ fontWeight: 900 }}>
-                  My Process
-                </h3>
-                <div className="space-y-4">
-                  {['Discover', 'Define', 'Design', 'Test', 'Deliver'].map((step, i) => (
-                    <div key={step} className="flex items-center gap-4">
-                      <span className="font-display text-3xl text-accent">0{i + 1}</span>
-                      <span className="font-sans font-bold text-charcoal text-lg" style={{ fontWeight: 700 }}>{step}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              </ul>
             </div>
+          ))}
+        </div>
+
+        {/* Process — horizontal steps */}
+        <div className="border-t border-charcoal/15 pt-10">
+          <h3
+            className="font-sans text-[10px] uppercase tracking-[0.2em] text-charcoal/35 mb-8"
+            style={{ fontWeight: 600 }}
+          >
+            My Process
+          </h3>
+          <div className="flex flex-col md:flex-row">
+            {process.map((step, i) => (
+              <div
+                key={step}
+                className="flex-1 flex items-center gap-4 py-5 border-t border-charcoal/10 md:border-t-0 md:border-l md:border-charcoal/10 md:pl-7 first:border-t-0 md:first:border-l-0 md:first:pl-0"
+              >
+                <span className="font-display text-3xl md:text-4xl text-accent/40 shrink-0">
+                  0{i + 1}
+                </span>
+                <span
+                  className="font-sans text-base md:text-lg text-charcoal"
+                  style={{ fontWeight: 700 }}
+                >
+                  {step}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
+
       </div>
     </section>
   )

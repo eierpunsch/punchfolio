@@ -7,90 +7,79 @@ const socials = [
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-28 px-6">
-      <div className="max-w-[1200px] mx-auto">
+    <section id="contact" className="py-20 md:py-32 px-6 md:px-10">
+      <div className="max-w-[1400px] mx-auto">
+
         {/* Section label */}
-        <div className="flex items-center gap-3 mb-6">
-          <span className="inline-block w-10 h-[3px] bg-charcoal" />
-          <span className="font-sans text-sm font-semibold tracking-[0.15em] uppercase text-charcoal/50">
-            Get in Touch
-          </span>
+        <div className="flex items-center gap-3 mb-12">
+          <span className="font-sans text-[10px] tracking-[0.2em] uppercase text-charcoal/30" style={{ fontWeight: 600 }}>04</span>
+          <span className="w-8 h-px bg-charcoal/20" />
+          <span className="font-sans text-[10px] tracking-[0.2em] uppercase text-charcoal/40" style={{ fontWeight: 600 }}>Get in Touch</span>
         </div>
 
-        {/* Big heading */}
-        <div className="border-[3px] border-charcoal p-10 md:p-16 flex flex-col md:flex-row gap-12 items-start md:items-center justify-between">
-          <div className="flex-1">
-            <h2 className="font-display text-[clamp(3.5rem,8vw,7rem)] leading-[0.9] text-charcoal mb-6">
-              Let's work together
-            </h2>
-            <p className="font-body text-lg text-charcoal/70 max-w-[480px] leading-relaxed">
-              Got a project in mind? I'd love to hear about it. Whether it's a
-              quick question or a full project brief, my inbox is always open.
-            </p>
-          </div>
-
-          {/* CTA card */}
-          <div className="flex flex-col gap-4 shrink-0">
-            <a
-              href="mailto:alex@example.com"
-              className="group inline-flex items-center gap-3 px-8 py-5 bg-charcoal text-cream font-sans font-bold text-lg border-[3px] border-charcoal hover:bg-accent hover:border-accent transition-all duration-200"
-              style={{ fontWeight: 700 }}
-            >
-              Say Hello
-              <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
-            </a>
-            <p className="font-body text-sm text-charcoal/50 text-center">
-              alex@example.com
-            </p>
-          </div>
+        {/* Big statement */}
+        <div className="border-t border-charcoal/15 pt-10 md:pt-16 mb-10 md:mb-14">
+          <h2 className="font-display text-[clamp(3.5rem,10vw,10rem)] leading-[0.85] text-charcoal mb-6">
+            Let's work<br />together
+          </h2>
+          <p className="font-body text-base md:text-lg text-charcoal/55 max-w-[440px] leading-relaxed">
+            Got a project in mind? Whether it's a quick question or a full
+            project brief, my inbox is always open.
+          </p>
         </div>
 
-        {/* Currently section */}
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-px bg-charcoal border-[3px] border-charcoal">
-          <div className="bg-cream px-8 py-7">
-            <p className="font-sans text-xs font-semibold text-charcoal/40 uppercase tracking-widest mb-2">
+        {/* Email CTA */}
+        <div className="mb-14 md:mb-20">
+          <a
+            href="mailto:punchfolio@example.com"
+            className="group inline-flex items-center gap-4 font-display text-[clamp(1.2rem,3vw,2.5rem)] text-charcoal hover:text-accent transition-colors duration-300"
+          >
+            punchfolio@example.com
+            <span className="group-hover:translate-x-2 transition-transform duration-300 text-accent">→</span>
+          </a>
+        </div>
+
+        {/* Info strip */}
+        <div className="border-t border-charcoal/15 py-8 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-0 mb-10">
+          <div className="sm:border-r sm:border-charcoal/10 sm:pr-10">
+            <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-charcoal/30 mb-2" style={{ fontWeight: 600 }}>
               Currently
             </p>
-            <p className="font-sans font-bold text-charcoal" style={{ fontWeight: 700 }}>
-              Open to freelance
-            </p>
-            <p className="font-body text-sm text-charcoal/60 mt-1">& full-time roles</p>
+            <p className="font-sans text-sm text-charcoal" style={{ fontWeight: 700 }}>Open to freelance</p>
+            <p className="font-body text-sm text-charcoal/50">&amp; full-time roles</p>
           </div>
-          <div className="bg-cream px-8 py-7">
-            <p className="font-sans text-xs font-semibold text-charcoal/40 uppercase tracking-widest mb-2">
+          <div className="sm:border-r sm:border-charcoal/10 sm:px-10">
+            <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-charcoal/30 mb-2" style={{ fontWeight: 600 }}>
               Based in
             </p>
-            <p className="font-sans font-bold text-charcoal" style={{ fontWeight: 700 }}>
-              San Francisco, CA
-            </p>
-            <p className="font-body text-sm text-charcoal/60 mt-1">Remote-friendly</p>
+            <p className="font-sans text-sm text-charcoal" style={{ fontWeight: 700 }}>San Francisco, CA</p>
+            <p className="font-body text-sm text-charcoal/50">Remote-friendly</p>
           </div>
-          <div className="bg-cream px-8 py-7">
-            <p className="font-sans text-xs font-semibold text-charcoal/40 uppercase tracking-widest mb-2">
+          <div className="sm:pl-10">
+            <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-charcoal/30 mb-2" style={{ fontWeight: 600 }}>
               Response time
             </p>
-            <p className="font-sans font-bold text-charcoal" style={{ fontWeight: 700 }}>
-              Within 24 hours
-            </p>
-            <p className="font-body text-sm text-charcoal/60 mt-1">Usually faster</p>
+            <p className="font-sans text-sm text-charcoal" style={{ fontWeight: 700 }}>Within 24 hours</p>
+            <p className="font-body text-sm text-charcoal/50">Usually faster</p>
           </div>
         </div>
 
         {/* Social links */}
-        <div className="mt-10 flex flex-wrap gap-4">
+        <div className="flex flex-wrap gap-6 md:gap-8">
           {socials.map((s) => (
             <a
               key={s.label}
               href={s.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-5 py-3 border-[3px] border-charcoal font-sans font-bold text-sm text-charcoal hover:bg-charcoal hover:text-cream transition-all duration-200 underline-draw"
-              style={{ fontWeight: 700 }}
+              className="font-sans text-sm text-charcoal/35 hover:text-charcoal transition-colors underline-draw"
+              style={{ fontWeight: 600 }}
             >
               {s.label} ↗
             </a>
           ))}
         </div>
+
       </div>
     </section>
   )

@@ -1,154 +1,59 @@
-import { useState } from 'react'
-
-const categories = ['All', 'Mobile', 'Web', 'Product', 'Brand']
+import { useEffect, useRef } from 'react'
 
 const projects = [
   {
     id: 1,
-    title: 'MindSpace',
-    subtitle: 'Wellness App Redesign',
+    title: 'Meal-kit Upselling',
+    subtitle: 'Marley Spoon SE · Berlin, Germany',
     category: 'Mobile',
     year: '2024',
     bg: '#c4b5d4',
-    role: 'Lead Designer',
     description:
-      'A complete redesign of a mental wellness app — reducing friction in onboarding by 60% and improving daily engagement through personalized content flows.',
-    tags: ['User Research', 'Prototyping', 'iOS Design'],
+      'Leveraging the food pairing concept in Marley Spoon\'s meal-kit subscription to drive upselling, increasing the market attachment rate by ~2.5%.',
+    tags: ['User Research', 'UI/UX Design', 'Usability Testing', 'iOS Design', 'B2C', 'Consumer UX'],
+    link: '/work/meal-kit-upselling',
   },
   {
     id: 2,
-    title: 'ShopFlow',
-    subtitle: 'E-commerce Platform',
+    title: 'Re-subscription Strategy',
+    subtitle: 'Marley Spoon SE · Berlin, Germany',
     category: 'Web',
     year: '2024',
     bg: '#f4a67a',
-    role: 'UI/UX Designer',
     description:
-      'End-to-end redesign of a Shopify competitor\'s checkout experience, cutting drop-off rate by 34% through progressive disclosure and trust-building design patterns.',
-    tags: ['UX Research', 'Design System', 'A/B Testing'],
+      'Translating research and customer insights into a redesigned meal-kit subscription flow, resulting in a ~6% increase in conversion rate.',
+    tags: ['User Research', 'UI/UX Design', 'Multivariate Testing', 'B2C', 'Consumer UX'],
+    link: '/work/resubscription-strategy',
   },
   {
     id: 3,
-    title: 'DataFlow',
-    subtitle: 'Analytics Dashboard',
+    title: 'Payment Retry',
+    subtitle: 'Marley Spoon SE · Berlin, Germany',
     category: 'Product',
     year: '2023',
     bg: '#7ac4b0',
-    role: 'Product Designer',
     description:
       'Designed a complex B2B analytics dashboard for data teams, transforming overwhelming data tables into clear, actionable visualisations used by 500+ companies.',
-    tags: ['Data Viz', 'B2B', 'Enterprise UX'],
+    tags: ['Data Viz', 'B2B', 'Enterprise UX', 'B2C', 'Consumer UX'],
+    link: '/work/payment-retry',
   },
   {
     id: 4,
-    title: 'Wanderlust',
-    subtitle: 'Travel Booking App',
-    category: 'Mobile',
-    year: '2023',
+    title: 'Product Return Portal',
+    subtitle: 'Emma Sleep GmbH · Frankfurt am Main, Germany',
+    category: 'Web',
+    year: '2019',
     bg: '#85b8e0',
-    role: 'Lead Designer',
     description:
-      'A travel app designed around discovery and delight — featuring an AI-powered itinerary builder and a social trip-planning layer loved by 12k beta users.',
-    tags: ['Mobile UX', 'AI Features', 'User Testing'],
-  },
-  {
-    id: 5,
-    title: 'FoodieFind',
-    subtitle: 'Restaurant Discovery',
-    category: 'Mobile',
-    year: '2023',
-    bg: '#f5d76e',
-    role: 'UI/UX Designer',
-    description:
-      'Redesigned a restaurant discovery app to prioritise community reviews and visual browsing, resulting in a 4.8★ App Store rating post-launch.',
-    tags: ['Mobile', 'Social UX', 'Visual Design'],
-  },
-  {
-    id: 6,
-    title: 'Arco',
-    subtitle: 'Brand Identity System',
-    category: 'Brand',
-    year: '2022',
-    bg: '#a8d08d',
-    role: 'Visual Designer',
-    description:
-      'Full brand identity for a sustainable architecture studio — logo, design system, marketing site, and print collateral cohesively telling their story.',
-    tags: ['Branding', 'Design System', 'Web Design'],
+      'Streamlining return management by automating manual process, reducing customer service team\'s weekly workload by 20 hours.',
+    tags: ['User Research', 'UI/UX Design', 'B2C', 'Consumer UX'],
+    link: '/work/product-return-portal',
   },
 ]
-
-function ProjectCard({ project }) {
-  const [hovered, setHovered] = useState(false)
-
-  return (
-    <div
-      className="group border-[3px] border-charcoal cursor-pointer card-hover"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      {/* Image / preview area */}
-      <div
-        className="relative aspect-[3/2] overflow-hidden"
-        style={{ backgroundColor: project.bg }}
-      >
-        {/* Abstract project illustration */}
-        <ProjectIllustration id={project.id} bg={project.bg} />
-
-        {/* Hover overlay */}
-        <div
-          className={`absolute inset-0 bg-charcoal flex flex-col justify-end p-6 transition-all duration-300 ${
-            hovered ? 'opacity-100' : 'opacity-0'
-          }`}
-        >
-          <p className="font-body text-cream/80 text-sm leading-relaxed mb-4">
-            {project.description}
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <span
-                key={tag}
-                className="px-3 py-1 border border-cream/30 text-cream/60 text-xs font-sans font-semibold"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Card footer */}
-      <div className="p-5 bg-cream border-t-[3px] border-charcoal flex items-start justify-between gap-4">
-        <div>
-          <p className="font-sans text-xs font-semibold text-charcoal/40 uppercase tracking-widest mb-1">
-            {project.category} · {project.year}
-          </p>
-          <h3 className="font-sans font-black text-xl text-charcoal" style={{ fontWeight: 900 }}>
-            {project.title}
-          </h3>
-          <p className="font-body text-sm text-charcoal/60 mt-0.5">{project.subtitle}</p>
-        </div>
-        <div
-          className={`shrink-0 w-9 h-9 border-[3px] border-charcoal flex items-center justify-center transition-all duration-200 ${
-            hovered ? 'bg-charcoal' : 'bg-cream'
-          }`}
-        >
-          <span
-            className={`text-lg leading-none transition-colors duration-200 ${
-              hovered ? 'text-cream' : 'text-charcoal'
-            }`}
-          >
-            →
-          </span>
-        </div>
-      </div>
-    </div>
-  )
-}
 
 function ProjectIllustration({ id, bg }) {
   const illustrations = {
     1: (
-      // MindSpace - soft circles / mindfulness
       <svg viewBox="0 0 360 240" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
         <rect width="360" height="240" fill={bg} />
         <circle cx="180" cy="120" r="80" stroke="white" strokeWidth="3" opacity="0.4" />
@@ -161,15 +66,12 @@ function ProjectIllustration({ id, bg }) {
       </svg>
     ),
     2: (
-      // ShopFlow - grid / store
       <svg viewBox="0 0 360 240" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
         <rect width="360" height="240" fill={bg} />
         <rect x="60" y="40" width="100" height="100" rx="4" fill="white" opacity="0.35" />
         <rect x="200" y="40" width="100" height="100" rx="4" fill="white" opacity="0.35" />
         <rect x="60" y="160" width="100" height="50" rx="4" fill="white" opacity="0.35" />
         <rect x="200" y="160" width="100" height="50" rx="4" fill="white" opacity="0.35" />
-        <rect x="80" y="155" width="60" height="8" rx="2" fill="white" opacity="0.6" />
-        <rect x="220" y="155" width="60" height="8" rx="2" fill="white" opacity="0.6" />
         <circle cx="110" cy="90" r="25" fill="white" opacity="0.4" />
         <circle cx="250" cy="90" r="25" fill="white" opacity="0.4" />
         <rect x="90" y="165" width="40" height="5" rx="2" fill="white" opacity="0.5" />
@@ -179,7 +81,6 @@ function ProjectIllustration({ id, bg }) {
       </svg>
     ),
     3: (
-      // DataFlow - charts
       <svg viewBox="0 0 360 240" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
         <rect width="360" height="240" fill={bg} />
         <rect x="50" y="160" width="30" height="50" rx="2" fill="white" opacity="0.5" />
@@ -199,7 +100,6 @@ function ProjectIllustration({ id, bg }) {
       </svg>
     ),
     4: (
-      // Wanderlust - map / travel
       <svg viewBox="0 0 360 240" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
         <rect width="360" height="240" fill={bg} />
         <circle cx="180" cy="100" r="70" stroke="white" strokeWidth="2" opacity="0.3" />
@@ -213,114 +113,144 @@ function ProjectIllustration({ id, bg }) {
         <path d="M100 140 Q155 120 180 100" stroke="white" strokeWidth="1.5" strokeDasharray="6 4" opacity="0.5" />
         <path d="M180 100 Q230 85 270 70" stroke="white" strokeWidth="1.5" strokeDasharray="6 4" opacity="0.5" />
         <path d="M180 100 Q220 130 240 160" stroke="white" strokeWidth="1.5" strokeDasharray="6 4" opacity="0.5" />
-        <rect x="40" y="170" width="80" height="40" rx="4" fill="white" opacity="0.2" />
-        <rect x="48" y="178" width="40" height="5" rx="2" fill="white" opacity="0.5" />
-        <rect x="48" y="189" width="55" height="5" rx="2" fill="white" opacity="0.3" />
       </svg>
     ),
     5: (
-      // FoodieFind - rating / food
       <svg viewBox="0 0 360 240" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
         <rect width="360" height="240" fill={bg} />
         <circle cx="180" cy="100" r="65" fill="white" opacity="0.2" stroke="white" strokeWidth="2" />
         <circle cx="180" cy="100" r="45" fill="white" opacity="0.15" />
-        {/* Fork and knife */}
         <rect x="155" y="65" width="4" height="50" rx="2" fill="white" opacity="0.8" />
         <path d="M149 65 L149 80 Q149 88 155 88" stroke="white" strokeWidth="3" strokeLinecap="round" fill="none" opacity="0.8" />
         <path d="M161 65 L161 80 Q161 88 155 88" stroke="white" strokeWidth="3" strokeLinecap="round" fill="none" opacity="0.8" />
         <rect x="199" y="65" width="4" height="50" rx="2" fill="white" opacity="0.8" />
         <path d="M197 65 L197 77 Q197 83 203 83 Q209 83 209 77 L209 65" stroke="white" strokeWidth="2.5" strokeLinecap="round" fill="none" opacity="0.8" />
-        {/* Stars */}
         {[0, 1, 2, 3, 4].map((i) => (
           <text key={i} x={100 + i * 34} y="180" fontSize="20" fill="white" opacity={i < 4 ? 0.8 : 0.3} textAnchor="middle">★</text>
         ))}
       </svg>
     ),
     6: (
-      // Arco - brand / geometry
       <svg viewBox="0 0 360 240" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
         <rect width="360" height="240" fill={bg} />
-        {/* Logo mark */}
         <path d="M180 50 L230 150 L130 150 Z" stroke="white" strokeWidth="3" fill="white" opacity="0.25" />
         <path d="M180 70 L218 150 L142 150 Z" stroke="none" fill={bg} opacity="0.5" />
-        {/* Brand typography mockup */}
         <rect x="100" y="170" width="80" height="10" rx="2" fill="white" opacity="0.5" />
         <rect x="120" y="186" width="40" height="6" rx="2" fill="white" opacity="0.3" />
-        {/* Color palette dots */}
         <circle cx="90" cy="180" r="8" fill="white" opacity="0.7" />
         <circle cx="90" cy="200" r="8" fill="white" opacity="0.4" />
         <circle cx="90" cy="220" r="8" fill="white" opacity="0.2" />
-        {/* Abstract lines */}
         <line x1="260" y1="50" x2="310" y2="200" stroke="white" strokeWidth="2" opacity="0.3" />
         <line x1="290" y1="50" x2="240" y2="200" stroke="white" strokeWidth="2" opacity="0.3" />
-        <line x1="260" y1="50" x2="240" y2="200" stroke="none" fill="white" opacity="0.15" />
       </svg>
     ),
   }
-
   return illustrations[id] || null
 }
 
-export default function Projects() {
-  const [active, setActive] = useState('All')
+function ParallaxCard({ project, index }) {
+  const clipRef = useRef(null)
+  const moveRef = useRef(null)
+  const isEven = index % 2 === 1
 
-  const filtered =
-    active === 'All' ? projects : projects.filter((p) => p.category === active)
+  useEffect(() => {
+    const clip = clipRef.current
+    const move = moveRef.current
+    if (!clip || !move) return
+
+    const update = () => {
+      if (window.innerWidth < 1024) return
+      const rect = clip.getBoundingClientRect()
+      const offset = (window.innerHeight / 2 - (rect.top + rect.height / 2)) * -0.12
+      move.style.transform = `translateY(${offset}px)`
+    }
+
+    window.addEventListener('scroll', update, { passive: true })
+    update()
+    return () => window.removeEventListener('scroll', update)
+  }, [])
 
   return (
-    <section id="work" className="py-28 px-6">
-      <div className="max-w-[1200px] mx-auto">
-        {/* Section label */}
-        <div className="flex items-center gap-3 mb-6">
-          <span className="inline-block w-10 h-[3px] bg-charcoal" />
-          <span className="font-sans text-sm font-semibold tracking-[0.15em] uppercase text-charcoal/50">
-            Selected Work
-          </span>
-        </div>
+    <div className="grid grid-cols-1 lg:grid-cols-2 border-t border-charcoal/12">
 
-        {/* Header + filter row */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
-          <h2 className="font-display text-[clamp(3rem,7vw,5.5rem)] leading-[0.95] text-charcoal">
-            Things I've built
-          </h2>
-
-          <div className="flex flex-wrap gap-2">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActive(cat)}
-                className={`px-4 py-2 border-[3px] border-charcoal font-sans font-bold text-[13px] transition-all duration-200 ${
-                  active === cat
-                    ? 'bg-charcoal text-cream'
-                    : 'bg-cream text-charcoal hover:bg-charcoal/10'
-                }`}
-                style={{ fontWeight: 700 }}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
-        </div>
-
-        {/* More work CTA */}
-        <div className="mt-16 text-center">
-          <a
-            href="mailto:alex@example.com"
-            className="inline-flex items-center gap-2 font-sans font-bold text-charcoal underline-draw text-lg hover:text-accent transition-colors duration-200"
-            style={{ fontWeight: 700 }}
-          >
-            Want to see more? Let's chat
-            <span className="text-accent">→</span>
-          </a>
+      {/* Illustration — parallax */}
+      <div
+        ref={clipRef}
+        className={`relative overflow-hidden min-h-[60vw] sm:min-h-[50vw] lg:min-h-[65vh] ${isEven ? 'lg:order-2' : 'lg:order-1'}`}
+        style={{ backgroundColor: project.bg }}
+      >
+        <div
+          ref={moveRef}
+          className="absolute w-full"
+          style={{ top: '-15%', height: '130%' }}
+        >
+          <ProjectIllustration id={project.id} bg={project.bg} />
         </div>
       </div>
+
+      {/* Info */}
+      <div className={`flex flex-col justify-center px-8 py-10 md:px-12 md:py-14 lg:px-16 lg:py-20 ${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
+        <p
+          className="font-sans text-[10px] uppercase tracking-[0.2em] text-charcoal/35 mb-6"
+          style={{ fontWeight: 600 }}
+        >
+          {String(index + 1).padStart(2, '0')} · {project.category} · {project.year}
+        </p>
+        <h3 className="font-display text-[clamp(2.5rem,4.5vw,5rem)] leading-[0.92] text-charcoal mb-4">
+          {project.title}
+        </h3>
+        <p className="font-sans text-sm text-charcoal/45 mb-6" style={{ fontWeight: 600 }}>
+          {project.subtitle}
+        </p>
+        <p className="font-body text-sm md:text-base text-charcoal/60 leading-relaxed mb-8 w-full">
+          {project.description}
+        </p>
+        <div className="flex flex-wrap gap-2 mb-8">
+          {project.tags.map((tag) => (
+            <span
+              key={tag}
+              className="px-2.5 py-1 text-[11px] font-sans bg-charcoal/5 text-charcoal/50 border border-charcoal/10"
+              style={{ fontWeight: 600 }}
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+        <a
+          href={project.link}
+          className="group inline-flex items-center gap-2 font-sans text-sm text-charcoal hover:text-accent transition-colors duration-200"
+          style={{ fontWeight: 700 }}
+        >
+          Read More
+          <span className="group-hover:translate-x-1 transition-transform duration-200 text-accent">→</span>
+        </a>
+      </div>
+
+    </div>
+  )
+}
+
+export default function Projects() {
+  const filtered = projects
+
+  return (
+    <section id="work" className="pt-20 md:pt-32 pb-20 md:pb-32">
+
+      {/* Header */}
+      <div className="px-6 md:px-10 max-w-[1400px] mx-auto mb-12 md:mb-16">
+        <h2 className="font-display text-[clamp(2.5rem,7vw,6rem)] leading-[0.9] text-charcoal text-center">
+          Things I've built
+        </h2>
+      </div>
+
+      {/* Parallax cards */}
+      <div className="border-b border-charcoal/12">
+        {filtered.map((project, i) => (
+          <ParallaxCard key={project.id} project={project} index={i} />
+        ))}
+      </div>
+
+
     </section>
   )
 }
