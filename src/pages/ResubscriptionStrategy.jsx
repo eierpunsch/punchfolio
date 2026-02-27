@@ -9,14 +9,11 @@ const meta = [
 
 export default function ResubscriptionStrategy() {
   return (
-    <article className="px-6 md:px-10 py-20 md:py-32">
-      <div className="max-w-[860px] mx-auto">
+    <article className="px-4 md:px-8 py-20 md:py-32">
+      <div className="max-w-[960px] mx-auto">
 
         {/* Header */}
         <div className="mb-16 md:mb-24">
-          <p className="font-sans text-[11px] uppercase tracking-[0.2em] text-charcoal/35 mb-6" style={{ fontWeight: 600 }}>
-            Case Study
-          </p>
           <h1 className="font-display text-[clamp(3rem,7vw,6rem)] leading-[0.95] text-charcoal mb-6">
             Re-subscription Strategy
           </h1>

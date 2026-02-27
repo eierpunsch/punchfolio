@@ -38,8 +38,7 @@ export default function App() {
         <Route path="/work/meal-kit-upselling" element={<MealKitUpselling />} />
         <Route path="/work/resubscription-strategy" element={<ResubscriptionStrategy />} />
         <Route path="/work/payment-retry" element={<PaymentRetry />} />
-        <Route path="/work/product-return-portal" element={<ProductReturnPortal />} />
-      </Routes>
+        <Route path="/work/product-return-portal" element={<ProductReturnPortal />} />      </Routes>
       <Footer />
     </div>
   )

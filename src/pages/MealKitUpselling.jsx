@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react'
+
 const tags = ['User Research', 'UI/UX Design', 'Usability Testing', 'iOS Design', 'B2C', 'Consumer UX']
 
 const meta = [
@@ -8,15 +10,20 @@ const meta = [
 ]
 
 export default function MealKitUpselling() {
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 400)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   return (
-    <article className="px-6 md:px-10 py-20 md:py-32">
-      <div className="max-w-[860px] mx-auto">
+    <article className="px-4 md:px-8 py-20 md:py-32">
+      <div className="max-w-[960px] mx-auto">
 
         {/* Header */}
         <div className="mb-16 md:mb-24">
-          <p className="font-sans text-[11px] uppercase tracking-[0.2em] text-charcoal/35 mb-6" style={{ fontWeight: 600 }}>
-            Case Study
-          </p>
           <h1 className="font-display text-[clamp(3rem,7vw,6rem)] leading-[0.95] text-charcoal mb-6">
             Meal-kit Upselling
           </h1>
@@ -115,7 +122,7 @@ export default function MealKitUpselling() {
             </p>
           </section>
 
-          <div className="w-full rounded-2xl overflow-hidden shadow-md">
+          <div className="w-full rounded-2xl overflow-hidden">
             <img src="/meal-kit-landscape.webp" alt="Landscape analysis of meal-kit competitors" className="w-full h-auto" />
           </div>
 
@@ -137,6 +144,15 @@ export default function MealKitUpselling() {
               Building upon the existing UX pattern of recipe customization, the design explored how to introduce the pairing feature in a way that felt native to the existing flow, reducing friction while surfacing market products at the most relevant moment in the customer journey.
             </p>
           </section>
+
+          <div className="flex flex-col md:flex-row gap-6">
+            <div className="flex-1 overflow-hidden">
+              <img src="/meal-kit-sketch-1.webp" alt="Bottom sheet modal sketch for normal recipe" className="w-full h-auto" />
+            </div>
+            <div className="flex-1 overflow-hidden">
+              <img src="/meal-kit-sketch-2.webp" alt="Bottom sheet modal sketch for customizable recipe" className="w-full h-auto" />
+            </div>
+          </div>
 
           <section>
             <h2 className="font-display text-[clamp(1.8rem,4vw,3rem)] text-charcoal mb-6">High-fidelity Design</h2>
@@ -163,15 +179,31 @@ export default function MealKitUpselling() {
             </p>
           </section>
 
+          <div className="flex flex-col md:flex-row gap-6 justify-center">
+            <div className="w-full md:w-[280px] shrink-0 overflow-hidden">
+              <img src="/meal-kit-usability-1.webp" alt="Usability test prototype - icons version" className="w-full h-auto" />
+            </div>
+            <div className="w-full md:w-[280px] shrink-0 overflow-hidden">
+              <img src="/meal-kit-usability-2.webp" alt="Usability test prototype - raw meat image version" className="w-full h-auto" />
+            </div>
+          </div>
+
           <section>
             <h2 className="font-display text-[clamp(1.8rem,4vw,3rem)] text-charcoal mb-6">Test Result</h2>
             <div className="w-12 h-px bg-charcoal/20 mb-8" />
-            <p className="font-sans text-sm md:text-base text-charcoal/80 leading-relaxed mb-4" style={{ fontWeight: 600 }}>
-              Out of the 42 participants, only 8 mentioned that they did not want to see raw meat images.
-            </p>
-            <p className="font-body text-base md:text-lg text-charcoal/60 leading-relaxed">
-              From those 8 people, 6 of them are either vegetarian or vegan. Due to the limitations of the unmoderated test, no in-depth reasons were provided on why raw meat ingredients weren't disturbing for them. However, several feedbacks mentioned that the ingredient images helped them visualize the choices they would get. Overall, the participants understood how to customize the recipe along with adding a market product.
-            </p>
+            <div className="flex flex-col md:flex-row gap-10 items-start">
+              <div className="flex-1">
+                <p className="font-sans text-sm md:text-base text-charcoal/80 leading-relaxed mb-4" style={{ fontWeight: 600 }}>
+                  Out of the 42 participants, only 8 mentioned that they did not want to see raw meat images.
+                </p>
+                <p className="font-body text-base md:text-lg text-charcoal/60 leading-relaxed">
+                  From those 8 people, 6 of them are either vegetarian or vegan. Due to the limitations of the unmoderated test, no in-depth reasons were provided on why raw meat ingredients weren't disturbing for them. However, several feedbacks mentioned that the ingredient images helped them visualize the choices they would get. Overall, the participants understood how to customize the recipe along with adding a market product.
+                </p>
+              </div>
+              <div className="w-full md:w-[220px] shrink-0 rounded-2xl overflow-hidden shadow-md">
+                <img src="/meal-kit-result.gif" alt="Final customization flow" className="w-full h-auto" />
+              </div>
+            </div>
           </section>
 
           <section>
@@ -194,6 +226,24 @@ export default function MealKitUpselling() {
 
         </div>
 
+        {/* Screen showcase */}
+        <div className="mt-20 md:mt-28 -mx-4 md:-mx-8 px-4 md:px-8">
+          <p className="font-sans text-[11px] uppercase tracking-[0.2em] text-charcoal/35 mb-8 max-w-[960px] mx-auto" style={{ fontWeight: 600 }}>Final Screens</p>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            {[
+              { src: '/meal-kit-screen-1.webp', alt: 'Recipe detail with market pairing' },
+              { src: '/meal-kit-screen-2.webp', alt: 'Bottom sheet with pairing suggestion' },
+              { src: '/meal-kit-screen-3.webp', alt: 'Customizable recipe screen' },
+              { src: '/meal-kit-screen-4.webp', alt: 'Market product detail' },
+              { src: '/meal-kit-screen-5.webp', alt: 'Bottom sheet with customization and pairing' },
+            ].map(({ src, alt }) => (
+              <div key={src} className="rounded-2xl overflow-hidden">
+                <img src={src} alt={alt} className="w-full h-auto" />
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Back link */}
         <div className="mt-24 pt-10 border-t border-charcoal/12">
           <a
@@ -207,6 +257,15 @@ export default function MealKitUpselling() {
         </div>
 
       </div>
+
+      {/* Scroll to top button */}
+      <button
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        className={`fixed bottom-8 right-8 w-10 h-10 bg-charcoal text-cream flex items-center justify-center rounded-full shadow-lg transition-all duration-300 hover:bg-accent ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}`}
+        aria-label="Scroll to top"
+      >
+        ↑
+      </button>
     </article>
   )
 }
