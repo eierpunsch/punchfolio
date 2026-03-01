@@ -12,6 +12,7 @@
     color: #333333;
     font-family: 'Montserrat', 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
+    cursor: url('/paw-cursor.svg') 16 16, auto;
   }
 
   ::selection {

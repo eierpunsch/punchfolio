@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 
 const navLinks = [
-  { label: 'Work', href: '#work' },
+  { label: 'Work', href: '/work' },
   { label: 'About', href: '/about' },
 ]
 
@@ -41,13 +41,6 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-          <a
-            href="/resume.pdf"
-            className="font-sans text-[12px] tracking-[0.15em] uppercase text-accent hover:text-charcoal transition-colors duration-200"
-            style={{ fontWeight: 700 }}
-          >
-            Resume ↗
-          </a>
         </nav>
 
         <a href="/" className="block absolute left-1/2 -translate-x-1/2">
@@ -57,7 +50,7 @@ export default function Navbar() {
         <div className="flex-1 flex justify-end items-center gap-5">
           {/* LinkedIn */}
           <a
-            href="#"
+            href="https://www.linkedin.com/in/wipaweetant/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
@@ -109,13 +102,6 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-          <a
-            href="/resume.pdf"
-            className="font-sans text-xs uppercase tracking-widest text-accent mt-2"
-            style={{ fontWeight: 700 }}
-          >
-            Resume ↗
-          </a>
         </div>
       </div>
     </header>

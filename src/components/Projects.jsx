@@ -29,12 +29,12 @@ const projects = [
     id: 3,
     title: 'Payment Retry',
     subtitle: 'Marley Spoon SE · Berlin, Germany',
-    category: 'Product',
+    category: 'Mobile',
     year: '2023',
     bg: '#7ac4b0',
     description:
-      'Designed a complex B2B analytics dashboard for data teams, transforming overwhelming data tables into clear, actionable visualisations used by 500+ companies.',
-    tags: ['Data Viz', 'B2B', 'Enterprise UX', 'B2C', 'Consumer UX'],
+      'This case study highlights a design process addressing payment failures during automatic weekly billing for a meal kit subscription service. The implemented solution resulted in a 4.4% increase in payment recovery rate.',
+    tags: ['User Research', 'UI/UX Design', 'Content Design', 'A/B Testing', 'B2C', 'Consumer UX'],
     link: '/work/payment-retry',
   },
   {
@@ -51,70 +51,322 @@ const projects = [
   },
 ]
 
+function MealKitIllustration({ bg }) {
+  const containerRef = useRef(null)
+  const phoneRef = useRef(null)
+
+  const handleMouseMove = (e) => {
+    const rect = containerRef.current?.getBoundingClientRect()
+    if (!rect || !phoneRef.current) return
+    const x = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2)
+    const y = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2)
+    phoneRef.current.style.transform = `perspective(700px) rotateY(${x * 18}deg) rotateX(${-y * 14}deg) scale3d(1.04, 1.04, 1.04)`
+  }
+
+  const handleMouseLeave = () => {
+    if (phoneRef.current) phoneRef.current.style.transform = 'perspective(700px) rotateY(0deg) rotateX(0deg) scale3d(1, 1, 1)'
+  }
+
+  return (
+    <div
+      ref={containerRef}
+      className="w-full h-full relative flex items-center justify-center"
+      style={{ backgroundColor: bg }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      <style>{`
+        @keyframes mkDrift1 {
+          0%, 100% { transform: translate(0px, 0px); }
+          33% { transform: translate(22px, -30px); }
+          66% { transform: translate(-14px, 18px); }
+        }
+        @keyframes mkDrift2 {
+          0%, 100% { transform: translate(0px, 0px); }
+          40% { transform: translate(-25px, 20px); }
+          80% { transform: translate(16px, -14px); }
+        }
+        @keyframes mkDrift3 {
+          0%, 100% { transform: translate(0px, 0px); }
+          50% { transform: translate(18px, 28px); }
+        }
+        @keyframes mkDrift4 {
+          0%, 100% { transform: translate(0px, 0px); }
+          60% { transform: translate(-20px, -18px); }
+        }
+      `}</style>
+
+      {/* Background blobs */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute rounded-full" style={{ width: 280, height: 280, background: 'rgba(255,255,255,0.13)', top: '-80px', left: '-60px', animation: 'mkDrift1 9s ease-in-out infinite' }} />
+        <div className="absolute rounded-full" style={{ width: 200, height: 200, background: 'rgba(255,255,255,0.10)', bottom: '-50px', right: '-40px', animation: 'mkDrift2 12s ease-in-out infinite' }} />
+        <div className="absolute rounded-full" style={{ width: 130, height: 130, background: 'rgba(255,255,255,0.08)', top: '35%', right: '12%', animation: 'mkDrift3 7s ease-in-out infinite' }} />
+        <div className="absolute rounded-full" style={{ width: 80, height: 80, background: 'rgba(255,255,255,0.10)', top: '18%', left: '18%', animation: 'mkDrift4 10s ease-in-out infinite' }} />
+      </div>
+
+      {/* Phone screen — 3D tilt follows cursor */}
+      <div
+        ref={phoneRef}
+        className="relative z-10"
+        style={{
+          width: 220,
+          height: 440,
+          borderRadius: 29,
+          overflow: 'hidden',
+          boxShadow: '0 30px 80px rgba(0,0,0,0.3)',
+          transform: 'perspective(700px) rotateY(0deg) rotateX(0deg)',
+          transition: 'transform 0.15s ease-out',
+          willChange: 'transform',
+        }}
+      >
+        <img src="/meal-kit-phone.webp" alt="Meal kit upselling app screen" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+      </div>
+    </div>
+  )
+}
+
+function ReturnPortalIllustration({ bg }) {
+  const containerRef = useRef(null)
+  const phoneRef = useRef(null)
+
+  const handleMouseMove = (e) => {
+    const rect = containerRef.current?.getBoundingClientRect()
+    if (!rect || !phoneRef.current) return
+    const x = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2)
+    const y = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2)
+    phoneRef.current.style.transform = `perspective(700px) rotateY(${x * 18}deg) rotateX(${-y * 14}deg) scale3d(1.04, 1.04, 1.04)`
+  }
+
+  const handleMouseLeave = () => {
+    if (phoneRef.current) phoneRef.current.style.transform = 'perspective(700px) rotateY(0deg) rotateX(0deg) scale3d(1, 1, 1)'
+  }
+
+  return (
+    <div
+      ref={containerRef}
+      className="w-full h-full relative flex items-center justify-center"
+      style={{ backgroundColor: bg }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      <style>{`
+        @keyframes rpDrift1 {
+          0%, 100% { transform: translate(0px, 0px); }
+          33% { transform: translate(20px, -28px); }
+          66% { transform: translate(-16px, 16px); }
+        }
+        @keyframes rpDrift2 {
+          0%, 100% { transform: translate(0px, 0px); }
+          40% { transform: translate(-22px, 18px); }
+          80% { transform: translate(14px, -20px); }
+        }
+        @keyframes rpDrift3 {
+          0%, 100% { transform: translate(0px, 0px); }
+          50% { transform: translate(16px, 22px); }
+        }
+        @keyframes rpDrift4 {
+          0%, 100% { transform: translate(0px, 0px); }
+          60% { transform: translate(-18px, -16px); }
+        }
+      `}</style>
+
+      {/* Background blobs */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute rounded-full" style={{ width: 280, height: 280, background: 'rgba(255,255,255,0.13)', top: '-80px', left: '-60px', animation: 'rpDrift1 9s ease-in-out infinite' }} />
+        <div className="absolute rounded-full" style={{ width: 200, height: 200, background: 'rgba(255,255,255,0.10)', bottom: '-50px', right: '-40px', animation: 'rpDrift2 12s ease-in-out infinite' }} />
+        <div className="absolute rounded-full" style={{ width: 130, height: 130, background: 'rgba(255,255,255,0.08)', top: '35%', right: '12%', animation: 'rpDrift3 7s ease-in-out infinite' }} />
+        <div className="absolute rounded-full" style={{ width: 80, height: 80, background: 'rgba(255,255,255,0.10)', top: '18%', left: '18%', animation: 'rpDrift4 10s ease-in-out infinite' }} />
+      </div>
+
+      {/* Phone screen — 3D tilt follows cursor */}
+      <div
+        ref={phoneRef}
+        className="relative z-10"
+        style={{
+          width: 220,
+          height: 440,
+          borderRadius: 29,
+          overflow: 'hidden',
+          boxShadow: '0 30px 80px rgba(0,0,0,0.3)',
+          transform: 'perspective(700px) rotateY(0deg) rotateX(0deg)',
+          transition: 'transform 0.15s ease-out',
+          willChange: 'transform',
+        }}
+      >
+        <img src="/return-portal-screen-1.webp" alt="Product return portal screen" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+      </div>
+    </div>
+  )
+}
+
+function ResubIllustration({ bg }) {
+  const containerRef = useRef(null)
+  const browserRef = useRef(null)
+
+  const handleMouseMove = (e) => {
+    const rect = containerRef.current?.getBoundingClientRect()
+    if (!rect || !browserRef.current) return
+    const x = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2)
+    const y = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2)
+    browserRef.current.style.transform = `perspective(900px) rotateY(${x * 14}deg) rotateX(${-y * 10}deg) scale3d(1.04, 1.04, 1.04)`
+  }
+
+  const handleMouseLeave = () => {
+    if (browserRef.current) browserRef.current.style.transform = 'perspective(900px) rotateY(0deg) rotateX(0deg) scale3d(1, 1, 1)'
+  }
+
+  return (
+    <div
+      ref={containerRef}
+      className="w-full h-full relative flex items-center justify-center"
+      style={{ backgroundColor: bg }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      <style>{`
+        @keyframes rsDrift1 {
+          0%, 100% { transform: translate(0px, 0px); }
+          33% { transform: translate(-20px, 26px); }
+          66% { transform: translate(16px, -18px); }
+        }
+        @keyframes rsDrift2 {
+          0%, 100% { transform: translate(0px, 0px); }
+          40% { transform: translate(24px, -20px); }
+          80% { transform: translate(-12px, 16px); }
+        }
+        @keyframes rsDrift3 {
+          0%, 100% { transform: translate(0px, 0px); }
+          50% { transform: translate(-18px, -24px); }
+        }
+        @keyframes rsDrift4 {
+          0%, 100% { transform: translate(0px, 0px); }
+          60% { transform: translate(22px, 18px); }
+        }
+      `}</style>
+
+      {/* Background blobs */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute rounded-full" style={{ width: 300, height: 300, background: 'rgba(255,255,255,0.13)', top: '-90px', right: '-70px', animation: 'rsDrift1 10s ease-in-out infinite' }} />
+        <div className="absolute rounded-full" style={{ width: 200, height: 200, background: 'rgba(255,255,255,0.10)', bottom: '-60px', left: '-40px', animation: 'rsDrift2 13s ease-in-out infinite' }} />
+        <div className="absolute rounded-full" style={{ width: 130, height: 130, background: 'rgba(255,255,255,0.08)', top: '30%', left: '10%', animation: 'rsDrift3 8s ease-in-out infinite' }} />
+        <div className="absolute rounded-full" style={{ width: 75, height: 75, background: 'rgba(255,255,255,0.10)', bottom: '20%', right: '15%', animation: 'rsDrift4 11s ease-in-out infinite' }} />
+      </div>
+
+      {/* Browser frame */}
+      <div
+        ref={browserRef}
+        className="relative z-10"
+        style={{
+          width: 420,
+          borderRadius: 10,
+          overflow: 'hidden',
+          boxShadow: '0 25px 70px rgba(0,0,0,0.25)',
+          background: 'white',
+          transform: 'perspective(900px) rotateY(0deg) rotateX(0deg)',
+          transition: 'transform 0.15s ease-out',
+          willChange: 'transform',
+        }}
+      >
+        {/* Safari chrome */}
+        <div style={{ background: '#e8e8e8', padding: '8px 12px', display: 'flex', alignItems: 'center', gap: 8, borderBottom: '1px solid #d0d0d0' }}>
+          <div style={{ display: 'flex', gap: 5 }}>
+            <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#ff5f57' }} />
+            <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#ffbd2e' }} />
+            <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#28c940' }} />
+          </div>
+          <div style={{ flex: 1, background: 'white', borderRadius: 5, padding: '3px 8px', fontSize: 10, color: '#888', fontFamily: 'sans-serif', textAlign: 'center' }}>
+            marleyspoon.com/account
+          </div>
+        </div>
+        {/* Screenshot */}
+        <div style={{ height: 300, overflow: 'hidden' }}>
+          <img src="/resub-browser.webp" alt="Resubscription strategy" style={{ width: '100%', display: 'block', objectFit: 'cover', objectPosition: 'top' }} />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function PaymentRetryIllustration({ bg }) {
+  const containerRef = useRef(null)
+  const phoneRef = useRef(null)
+
+  const handleMouseMove = (e) => {
+    const rect = containerRef.current?.getBoundingClientRect()
+    if (!rect || !phoneRef.current) return
+    const x = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2)
+    const y = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2)
+    phoneRef.current.style.transform = `perspective(700px) rotateY(${x * 18}deg) rotateX(${-y * 14}deg) scale3d(1.04, 1.04, 1.04)`
+  }
+
+  const handleMouseLeave = () => {
+    if (phoneRef.current) phoneRef.current.style.transform = 'perspective(700px) rotateY(0deg) rotateX(0deg) scale3d(1, 1, 1)'
+  }
+
+  return (
+    <div
+      ref={containerRef}
+      className="w-full h-full relative flex items-center justify-center"
+      style={{ backgroundColor: bg }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      <style>{`
+        @keyframes prDrift1 {
+          0%, 100% { transform: translate(0px, 0px); }
+          33% { transform: translate(22px, -30px); }
+          66% { transform: translate(-14px, 18px); }
+        }
+        @keyframes prDrift2 {
+          0%, 100% { transform: translate(0px, 0px); }
+          40% { transform: translate(-25px, 20px); }
+          80% { transform: translate(16px, -14px); }
+        }
+        @keyframes prDrift3 {
+          0%, 100% { transform: translate(0px, 0px); }
+          50% { transform: translate(18px, 28px); }
+        }
+        @keyframes prDrift4 {
+          0%, 100% { transform: translate(0px, 0px); }
+          60% { transform: translate(-20px, -18px); }
+        }
+      `}</style>
+
+      {/* Background blobs */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute rounded-full" style={{ width: 280, height: 280, background: 'rgba(255,255,255,0.13)', top: '-80px', left: '-60px', animation: 'prDrift1 9s ease-in-out infinite' }} />
+        <div className="absolute rounded-full" style={{ width: 200, height: 200, background: 'rgba(255,255,255,0.10)', bottom: '-50px', right: '-40px', animation: 'prDrift2 12s ease-in-out infinite' }} />
+        <div className="absolute rounded-full" style={{ width: 130, height: 130, background: 'rgba(255,255,255,0.08)', top: '35%', right: '12%', animation: 'prDrift3 7s ease-in-out infinite' }} />
+        <div className="absolute rounded-full" style={{ width: 80, height: 80, background: 'rgba(255,255,255,0.10)', top: '18%', left: '18%', animation: 'prDrift4 10s ease-in-out infinite' }} />
+      </div>
+
+      {/* Phone screen — 3D tilt follows cursor */}
+      <div
+        ref={phoneRef}
+        className="relative z-10"
+        style={{
+          width: 220,
+          height: 440,
+          borderRadius: 29,
+          overflow: 'hidden',
+          boxShadow: '0 30px 80px rgba(0,0,0,0.3)',
+          transform: 'perspective(700px) rotateY(0deg) rotateX(0deg)',
+          transition: 'transform 0.15s ease-out',
+          willChange: 'transform',
+        }}
+      >
+        <img src="/payment-retry-screen-1.webp" alt="Payment retry app screen" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+      </div>
+    </div>
+  )
+}
+
 function ProjectIllustration({ id, bg }) {
   const illustrations = {
-    1: (
-      <svg viewBox="0 0 360 240" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-        <rect width="360" height="240" fill={bg} />
-        <circle cx="180" cy="120" r="80" stroke="white" strokeWidth="3" opacity="0.4" />
-        <circle cx="180" cy="120" r="55" stroke="white" strokeWidth="3" opacity="0.4" />
-        <circle cx="180" cy="120" r="30" fill="white" opacity="0.3" />
-        <circle cx="180" cy="120" r="10" fill="white" opacity="0.7" />
-        <path d="M120 120 Q150 90 180 120 Q210 150 240 120" stroke="white" strokeWidth="3" strokeLinecap="round" fill="none" opacity="0.6" />
-        <circle cx="80" cy="60" r="15" stroke="white" strokeWidth="2" opacity="0.25" />
-        <circle cx="290" cy="190" r="20" stroke="white" strokeWidth="2" opacity="0.25" />
-      </svg>
-    ),
-    2: (
-      <svg viewBox="0 0 360 240" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-        <rect width="360" height="240" fill={bg} />
-        <rect x="60" y="40" width="100" height="100" rx="4" fill="white" opacity="0.35" />
-        <rect x="200" y="40" width="100" height="100" rx="4" fill="white" opacity="0.35" />
-        <rect x="60" y="160" width="100" height="50" rx="4" fill="white" opacity="0.35" />
-        <rect x="200" y="160" width="100" height="50" rx="4" fill="white" opacity="0.35" />
-        <circle cx="110" cy="90" r="25" fill="white" opacity="0.4" />
-        <circle cx="250" cy="90" r="25" fill="white" opacity="0.4" />
-        <rect x="90" y="165" width="40" height="5" rx="2" fill="white" opacity="0.5" />
-        <rect x="230" y="165" width="40" height="5" rx="2" fill="white" opacity="0.5" />
-        <rect x="90" y="173" width="30" height="5" rx="2" fill="white" opacity="0.3" />
-        <rect x="230" y="173" width="30" height="5" rx="2" fill="white" opacity="0.3" />
-      </svg>
-    ),
-    3: (
-      <svg viewBox="0 0 360 240" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-        <rect width="360" height="240" fill={bg} />
-        <rect x="50" y="160" width="30" height="50" rx="2" fill="white" opacity="0.5" />
-        <rect x="100" y="120" width="30" height="90" rx="2" fill="white" opacity="0.5" />
-        <rect x="150" y="80" width="30" height="130" rx="2" fill="white" opacity="0.5" />
-        <rect x="200" y="100" width="30" height="110" rx="2" fill="white" opacity="0.5" />
-        <rect x="250" y="60" width="30" height="150" rx="2" fill="white" opacity="0.5" />
-        <rect x="300" y="90" width="30" height="120" rx="2" fill="white" opacity="0.5" />
-        <path d="M50 150 L115 110 L165 70 L215 95 L265 55 L315 80" stroke="white" strokeWidth="3" strokeLinecap="round" fill="none" opacity="0.8" />
-        <circle cx="50" cy="150" r="5" fill="white" opacity="0.9" />
-        <circle cx="115" cy="110" r="5" fill="white" opacity="0.9" />
-        <circle cx="165" cy="70" r="5" fill="white" opacity="0.9" />
-        <circle cx="215" cy="95" r="5" fill="white" opacity="0.9" />
-        <circle cx="265" cy="55" r="5" fill="white" opacity="0.9" />
-        <circle cx="315" cy="80" r="5" fill="white" opacity="0.9" />
-        <line x1="40" y1="215" x2="340" y2="215" stroke="white" strokeWidth="2" opacity="0.4" />
-      </svg>
-    ),
-    4: (
-      <svg viewBox="0 0 360 240" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-        <rect width="360" height="240" fill={bg} />
-        <circle cx="180" cy="100" r="70" stroke="white" strokeWidth="2" opacity="0.3" />
-        <path d="M120 100 Q155 60 180 100 Q205 140 240 100" stroke="white" strokeWidth="2" fill="none" opacity="0.4" />
-        <circle cx="180" cy="100" r="12" fill="white" opacity="0.8" />
-        <circle cx="180" cy="100" r="5" fill={bg} />
-        <path d="M170 100 L180 80 L190 100 Z" fill="white" opacity="0.8" />
-        <circle cx="100" cy="140" r="8" stroke="white" strokeWidth="2" opacity="0.5" />
-        <circle cx="270" cy="70" r="8" stroke="white" strokeWidth="2" opacity="0.5" />
-        <circle cx="240" cy="160" r="8" stroke="white" strokeWidth="2" opacity="0.5" />
-        <path d="M100 140 Q155 120 180 100" stroke="white" strokeWidth="1.5" strokeDasharray="6 4" opacity="0.5" />
-        <path d="M180 100 Q230 85 270 70" stroke="white" strokeWidth="1.5" strokeDasharray="6 4" opacity="0.5" />
-        <path d="M180 100 Q220 130 240 160" stroke="white" strokeWidth="1.5" strokeDasharray="6 4" opacity="0.5" />
-      </svg>
-    ),
+    1: <MealKitIllustration bg={bg} />,
+    2: <ResubIllustration bg={bg} />,
+    3: <PaymentRetryIllustration bg={bg} />,
+    4: <ReturnPortalIllustration bg={bg} />,
     5: (
       <svg viewBox="0 0 360 240" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
         <rect width="360" height="240" fill={bg} />
@@ -171,7 +423,7 @@ function ParallaxCard({ project, index }) {
   }, [])
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 border-t border-charcoal/12">
+    <div className="grid grid-cols-1 lg:grid-cols-2 border-t border-charcoal/12 group">
 
       {/* Illustration — parallax */}
       <div
@@ -238,7 +490,7 @@ export default function Projects() {
 
       {/* Header */}
       <div className="px-6 md:px-10 max-w-[1400px] mx-auto mb-12 md:mb-16">
-        <h2 className="font-display text-[clamp(2.5rem,7vw,6rem)] leading-[0.9] text-charcoal text-center">
+        <h2 className="font-display text-[clamp(2.5rem,6vw,5rem)] leading-[1.05] text-charcoal text-center">
           Things I've built
         </h2>
       </div>

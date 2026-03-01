@@ -5,6 +5,7 @@ import PawPrints from './components/PawPrints'
 import Hero from './components/Hero'
 import Projects from './components/Projects'
 import About from './components/About'
+import Contact from './components/Contact'
 import MealKitUpselling from './pages/MealKitUpselling'
 import ResubscriptionStrategy from './pages/ResubscriptionStrategy'
 import PaymentRetry from './pages/PaymentRetry'
@@ -14,6 +15,22 @@ function HomePage() {
   return (
     <main>
       <Hero />
+      <Projects />
+    </main>
+  )
+}
+
+function ContactPage() {
+  return (
+    <main>
+      <Contact />
+    </main>
+  )
+}
+
+function WorkPage() {
+  return (
+    <main>
       <Projects />
     </main>
   )
@@ -34,6 +51,8 @@ export default function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/work" element={<WorkPage />} />
+        <Route path="/contact" element={<ContactPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/work/meal-kit-upselling" element={<MealKitUpselling />} />
         <Route path="/work/resubscription-strategy" element={<ResubscriptionStrategy />} />
