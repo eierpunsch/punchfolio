@@ -15,6 +15,14 @@
     cursor: url('/paw-cursor.svg') 16 16, auto;
   }
 
+  *, *::before, *::after {
+    cursor: url('/paw-cursor.svg') 16 16, auto;
+  }
+
+  a, button, [role="button"], select, label[for] {
+    cursor: pointer !important;
+  }
+
   ::selection {
     background-color: #0099ff;
     color: #f6eee3;
